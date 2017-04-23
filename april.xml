@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="april" default="all">
+  
+  
+  <property file="april.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.ane"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.maven:_antlr:antlr:2.7.7.classpath">
+    <pathelement location="${basedir}/../repository/antlr/antlr/2.7.7/antlr-2.7.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_aopalliance:aopalliance:1.0.classpath">
+    <pathelement location="${basedir}/../repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_c3p0:c3p0:0.9.1.2.classpath">
+    <pathelement location="${basedir}/../repository/c3p0/c3p0/0.9.1.2/c3p0-0.9.1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.alibaba:fastjson:1.2.31.classpath">
+    <pathelement location="${basedir}/../repository/com/alibaba/fastjson/1.2.31/fastjson-1.2.31.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.fasterxml:classmate:1.3.0.classpath">
+    <pathelement location="${basedir}/../repository/com/fasterxml/classmate/1.3.0/classmate-1.3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.github.virtuald:curvesapi:1.04.classpath">
+    <pathelement location="${basedir}/../repository/com/github/virtuald/curvesapi/1.04/curvesapi-1.04.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.inject.extensions:guice-multibindings:3.0.classpath">
+    <pathelement location="${basedir}/../repository/com/google/inject/extensions/guice-multibindings/3.0/guice-multibindings-3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.google.inject:guice:3.0.classpath">
+    <pathelement location="${basedir}/../repository/com/google/inject/guice/3.0/guice-3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.mchange:c3p0:0.9.5.2.classpath">
+    <pathelement location="${basedir}/../repository/com/mchange/c3p0/0.9.5.2/c3p0-0.9.5.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.mchange:mchange-commons-java:0.2.11.classpath">
+    <pathelement location="${basedir}/../repository/com/mchange/mchange-commons-java/0.2.11/mchange-commons-java-0.2.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.sun.xml.bind:jaxb-core:2.2.11.classpath">
+    <pathelement location="${basedir}/../repository/com/sun/xml/bind/jaxb-core/2.2.11/jaxb-core-2.2.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.sun.xml.bind:jaxb-impl:2.2.11.classpath">
+    <pathelement location="${basedir}/../repository/com/sun/xml/bind/jaxb-impl/2.2.11/jaxb-impl-2.2.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_com.zaxxer:hikaricp-java6:2.3.13.classpath">
+    <pathelement location="${basedir}/../repository/com/zaxxer/HikariCP-java6/2.3.13/HikariCP-java6-2.3.13.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-beanutils:commons-beanutils:1.9.3.classpath">
+    <pathelement location="${basedir}/../repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-codec:commons-codec:1.9.classpath">
+    <pathelement location="${basedir}/../repository/commons-codec/commons-codec/1.9/commons-codec-1.9.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-collections:commons-collections:3.2.2.classpath">
+    <pathelement location="${basedir}/../repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-fileupload:commons-fileupload:1.3.2.classpath">
+    <pathelement location="${basedir}/../repository/commons-fileupload/commons-fileupload/1.3.2/commons-fileupload-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-httpclient:commons-httpclient:3.0.classpath">
+    <pathelement location="${basedir}/../repository/commons-httpclient/commons-httpclient/3.0/commons-httpclient-3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-io:commons-io:2.2.classpath">
+    <pathelement location="${basedir}/../repository/commons-io/commons-io/2.2/commons-io-2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-lang:commons-lang:2.6.classpath">
+    <pathelement location="${basedir}/../repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_commons-logging:commons-logging:1.2.classpath">
+    <pathelement location="${basedir}/../repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_dom4j:dom4j:1.6.1.classpath">
+    <pathelement location="${basedir}/../repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.activation:activation:1.1.classpath">
+    <pathelement location="${basedir}/../repository/javax/activation/activation/1.1/activation-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.inject:javax.inject:1.classpath">
+    <pathelement location="${basedir}/../repository/javax/inject/javax.inject/1/javax.inject-1.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.mail:mail:1.4.7.classpath">
+    <pathelement location="${basedir}/../repository/javax/mail/mail/1.4.7/mail-1.4.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.servlet.jsp:jsp-api:2.2.classpath">
+    <pathelement location="${basedir}/../repository/javax/servlet/jsp/jsp-api/2.2/jsp-api-2.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.servlet:servlet-api:2.5.classpath">
+    <pathelement location="${basedir}/../repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+  </path>
+  
+  <path id="library.maven:_javax.validation:validation-api:1.1.0.final.classpath">
+    <pathelement location="${basedir}/../repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_jaxen:jaxen:1.1-beta-9.classpath">
+    <pathelement location="${basedir}/../repository/jaxen/jaxen/1.1-beta-9/jaxen-1.1-beta-9.jar"/>
+  </path>
+  
+  <path id="library.maven:_jdom:jdom:1.0.classpath">
+    <pathelement location="${basedir}/../repository/jdom/jdom/1.0/jdom-1.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_jstl:jstl:1.2.classpath">
+    <pathelement location="${basedir}/../repository/jstl/jstl/1.2/jstl-1.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_junit:junit:4.12.classpath">
+    <pathelement location="${basedir}/../repository/junit/junit/4.12/junit-4.12.jar"/>
+  </path>
+  
+  <path id="library.maven:_log4j:log4j:1.2.17.classpath">
+    <pathelement location="${basedir}/../repository/log4j/log4j/1.2.17/log4j-1.2.17.jar"/>
+  </path>
+  
+  <path id="library.maven:_mysql:mysql-connector-java:6.0.6.classpath">
+    <pathelement location="${basedir}/../repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.bytebuddy:byte-buddy:1.6.6.classpath">
+    <pathelement location="${basedir}/../repository/net/bytebuddy/byte-buddy/1.6.6/byte-buddy-1.6.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_net.sf.ehcache:ehcache-core:2.6.11.classpath">
+    <pathelement location="${basedir}/../repository/net/sf/ehcache/ehcache-core/2.6.11/ehcache-core-2.6.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_ognl:ognl:3.1.12.classpath">
+    <pathelement location="${basedir}/../repository/ognl/ognl/3.1.12/ognl-3.1.12.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-collections4:4.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.commons:commons-lang3:3.4.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/commons/commons-lang3/3.4/commons-lang3-3.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-core:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-core/3.1.11/cxf-core-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-bindings-soap:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-bindings-soap/3.1.11/cxf-rt-bindings-soap-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-bindings-xml:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-bindings-xml/3.1.11/cxf-rt-bindings-xml-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-databinding-jaxb:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-databinding-jaxb/3.1.11/cxf-rt-databinding-jaxb-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-frontend-jaxws:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-frontend-jaxws/3.1.11/cxf-rt-frontend-jaxws-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-frontend-simple:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-frontend-simple/3.1.11/cxf-rt-frontend-simple-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-transports-http:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-transports-http/3.1.11/cxf-rt-transports-http-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-ws-addr:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-ws-addr/3.1.11/cxf-rt-ws-addr-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-ws-policy:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-ws-policy/3.1.11/cxf-rt-ws-policy-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.cxf:cxf-rt-wsdl:3.1.11.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/cxf/cxf-rt-wsdl/3.1.11/cxf-rt-wsdl-3.1.11.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpclient:4.5.3.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.httpcomponents:httpcore:4.4.6.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.logging.log4j:log4j-api:2.7.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/logging/log4j/log4j-api/2.7/log4j-api-2.7.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.neethi:neethi:3.0.3.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/neethi/neethi/3.0.3/neethi-3.0.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.poi:poi-ooxml-schemas:3.16.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/poi/poi-ooxml-schemas/3.16/poi-ooxml-schemas-3.16.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.poi:poi-ooxml:3.16.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/poi/poi-ooxml/3.16/poi-ooxml-3.16.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.poi:poi:3.16.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/poi/poi/3.16/poi-3.16.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.shiro:shiro-all:1.3.2.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/shiro/shiro-all/1.3.2/shiro-all-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.shiro:shiro-core:1.3.2.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/shiro/shiro-core/1.3.2/shiro-core-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.shiro:shiro-guice:1.3.2.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/shiro/shiro-guice/1.3.2/shiro-guice-1.3.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.struts:struts2-convention-plugin:2.5.10.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/struts/struts2-convention-plugin/2.5.10.1/struts2-convention-plugin-2.5.10.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.struts:struts2-core:2.5.10.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/struts/struts2-core/2.5.10.1/struts2-core-2.5.10.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.struts:struts2-json-plugin:2.5.10.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/struts/struts2-json-plugin/2.5.10.1/struts2-json-plugin-2.5.10.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.struts:struts2-spring-plugin:2.5.10.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/struts/struts2-spring-plugin/2.5.10.1/struts2-spring-plugin-2.5.10.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.ws.commons:xmlschema:1.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/ws/commons/XmlSchema/1.1/XmlSchema-1.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.ws.xmlschema:xmlschema-core:2.2.1.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/ws/xmlschema/xmlschema-core/2.2.1/xmlschema-core-2.2.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.apache.xmlbeans:xmlbeans:2.6.0.classpath">
+    <pathelement location="${basedir}/../repository/org/apache/xmlbeans/xmlbeans/2.6.0/xmlbeans-2.6.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.aspectj:aspectjweaver:1.8.10.classpath">
+    <pathelement location="${basedir}/../repository/org/aspectj/aspectjweaver/1.8.10/aspectjweaver-1.8.10.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.woodstox:stax2-api:3.1.4.classpath">
+    <pathelement location="${basedir}/../repository/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.woodstox:woodstox-core-asl:4.4.1.classpath">
+    <pathelement location="${basedir}/../repository/org/codehaus/woodstox/woodstox-core-asl/4.4.1/woodstox-core-asl-4.4.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.woodstox:wstx-asl:3.2.0.classpath">
+    <pathelement location="${basedir}/../repository/org/codehaus/woodstox/wstx-asl/3.2.0/wstx-asl-3.2.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.codehaus.xfire:xfire-core:1.2.6.classpath">
+    <pathelement location="${basedir}/../repository/org/codehaus/xfire/xfire-core/1.2.6/xfire-core-1.2.6.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.freemarker:freemarker:2.3.23.classpath">
+    <pathelement location="${basedir}/../repository/org/freemarker/freemarker/2.3.23/freemarker-2.3.23.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hamcrest:hamcrest-core:1.3.classpath">
+    <pathelement location="${basedir}/../repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.common:hibernate-commons-annotations:5.0.1.final.classpath">
+    <pathelement location="${basedir}/../repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.final.classpath">
+    <pathelement location="${basedir}/../repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-core:5.2.10.final.classpath">
+    <pathelement location="${basedir}/../repository/org/hibernate/hibernate-core/5.2.10.Final/hibernate-core-5.2.10.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-entitymanager:5.2.10.final.classpath">
+    <pathelement location="${basedir}/../repository/org/hibernate/hibernate-entitymanager/5.2.10.Final/hibernate-entitymanager-5.2.10.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.hibernate:hibernate-validator:5.4.1.final.classpath">
+    <pathelement location="${basedir}/../repository/org/hibernate/hibernate-validator/5.4.1.Final/hibernate-validator-5.4.1.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.javassist:javassist:3.20.0-ga.classpath">
+    <pathelement location="${basedir}/../repository/org/javassist/javassist/3.20.0-GA/javassist-3.20.0-GA.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss.logging:jboss-logging:3.3.0.final.classpath">
+    <pathelement location="${basedir}/../repository/org/jboss/logging/jboss-logging/3.3.0.Final/jboss-logging-3.3.0.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.0.1.final.classpath">
+    <pathelement location="${basedir}/../repository/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.1.Final/jboss-transaction-api_1.2_spec-1.0.1.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.jboss:jandex:2.0.3.final.classpath">
+    <pathelement location="${basedir}/../repository/org/jboss/jandex/2.0.3.Final/jandex-2.0.3.Final.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.ow2.asm:asm-commons:5.1.classpath">
+    <pathelement location="${basedir}/../repository/org/ow2/asm/asm-commons/5.1/asm-commons-5.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.ow2.asm:asm-tree:5.1.classpath">
+    <pathelement location="${basedir}/../repository/org/ow2/asm/asm-tree/5.1/asm-tree-5.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.ow2.asm:asm:5.1.classpath">
+    <pathelement location="${basedir}/../repository/org/ow2/asm/asm/5.1/asm-5.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.quartz-scheduler:quartz:2.3.0.classpath">
+    <pathelement location="${basedir}/../repository/org/quartz-scheduler/quartz/2.3.0/quartz-2.3.0.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath">
+    <pathelement location="${basedir}/../repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.slf4j:slf4j-log4j12:1.7.25.classpath">
+    <pathelement location="${basedir}/../repository/org/slf4j/slf4j-log4j12/1.7.25/slf4j-log4j12-1.7.25.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-aop:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-aop/5.0.0.M5/spring-aop-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-beans:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-beans/5.0.0.M5/spring-beans-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-context-support:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-context-support/5.0.0.M5/spring-context-support-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-context:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-context/5.0.0.M5/spring-context-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-core:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-core/5.0.0.M5/spring-core-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-jdbc:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-jdbc/5.0.0.M5/spring-jdbc-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-orm:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-orm/5.0.0.M5/spring-orm-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-tx:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-tx/5.0.0.M5/spring-tx-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_org.springframework:spring-web:5.0.0.m5.classpath">
+    <pathelement location="${basedir}/../repository/org/springframework/spring-web/5.0.0.M5/spring-web-5.0.0.M5.jar"/>
+  </path>
+  
+  <path id="library.maven:_stax:stax-api:1.0.1.classpath">
+    <pathelement location="${basedir}/../repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_wsdl4j:wsdl4j:1.6.1.classpath">
+    <pathelement location="${basedir}/../repository/wsdl4j/wsdl4j/1.6.1/wsdl4j-1.6.1.jar"/>
+  </path>
+  
+  <path id="library.maven:_xerces:xercesimpl:2.6.2.classpath">
+    <pathelement location="${basedir}/../repository/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_xerces:xmlparserapis:2.6.2.classpath">
+    <pathelement location="${basedir}/../repository/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar"/>
+  </path>
+  
+  <path id="library.maven:_xml-apis:xml-apis:1.0.b2.classpath">
+    <pathelement location="${basedir}/../repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar"/>
+  </path>
+  
+  <path id="library.maven:_xml-resolver:xml-resolver:1.2.classpath">
+    <pathelement location="${basedir}/../repository/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_april.xml"/>
+  
+  <import file="${basedir}/exception/module_exception.xml"/>
+  
+  <import file="${basedir}/utils/module_utils.xml"/>
+  
+  <import file="${basedir}/web/module_web.xml"/>
+  
+  <import file="${basedir}/dao/module_dao.xml"/>
+  
+  <import file="${basedir}/domain/module_domain.xml"/>
+  
+  <import file="${basedir}/service/module_service.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.april, clean.module.exception, clean.module.utils, clean.module.web, clean.module.dao, clean.module.domain, clean.module.service" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.april, compile.module.exception, compile.module.utils, compile.module.web, compile.module.dao, compile.module.domain, compile.module.service" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
